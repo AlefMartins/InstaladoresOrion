@@ -1,3 +1,21 @@
+loading() {
+    local duration=2
+    local width=$2 
+    local interval=0.02
+    local progress=0     
+
+    while [ $progress -le 100 ]; do
+        local bar=$(printf "[%-${width}s]" $(printf "=%.0s" $(seq 1 $(($progress * $width / 100)))))
+        printf "\rCarregando... $bar%3d%%" $progress
+        sleep $interval
+        progress=$((progress + 1))
+    done
+
+    clear
+}
+
+width=100 
+
 #########################################################
 
 clear
@@ -13,7 +31,8 @@ echo -e "\e[32m|______/  \__  |   \_____/ |_|    |_| \___/ |_| |_||_____/   \___
 echo -e "\e[32m         (____/                                                             (_____|       \e[0m"
 echo -e "\e[32m\e[0m"
 echo -e "\e[32m\e[0m"
-sleep 2
+
+loading 2 $width
 
 #########################################################
 
